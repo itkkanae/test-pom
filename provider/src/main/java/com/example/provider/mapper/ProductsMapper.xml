@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.provider.mapper.ProductsMapper">
+
+
+    <select id="selectIdByName" parameterType="string" resultType="long">
+        select id from products where product_name=#{name}
+    </select>
+
+    <select id="selectByName" parameterType="com.example.common.dto.ProductExample"
+            resultType="com.example.common.dto.Product">
+        select * from products where product_name like concat('%',#{name},'%') limit #{startItem},#{pageSize}
+    </select>
+    <select id="countByName" parameterType="com.example.common.dto.ProductExample"
+            resultType="int">
+        select count(0) from products where product_name like concat('%',#{name},'%')
+    </select>
+
+    <insert id="insertProduct" parameterType="com.example.common.dto.Product">
+        insert into products
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="product_name != null and product_name != ''">product_name,</if>
+            <if test="product_date != null">product_date,</if>
+            <if test="product_sum != null">product_sum,</if>
+            <if test="product_desc != null and product_desc != ''">product_desc,</if>
+            <if test="product_price != null">product_price,</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="product_name != null and product_name != ''">#{product_name},</if>
+            <if test="product_date != null">#{product_date},</if>
+            <if test="product_sum != null">#{product_sum},</if>
+            <if test="product_desc != null and product_desc != ''">#{product_desc},</if>
+            <if test="product_price != null">#{product_price},</if>
+        </trim>
+    </insert>
+
+</mapper>

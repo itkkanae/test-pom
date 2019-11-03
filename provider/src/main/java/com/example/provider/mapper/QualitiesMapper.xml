@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.provider.mapper.QualitiesMapper">
+
+    <select id="selectProduct" parameterType="com.example.common.dto.QualityExample"
+            resultType="com.example.common.dto.Product">
+        select p.id,product_name,product_date,product_sum,product_desc,product_price
+        from products p inner join qualities q on p.id=q.product_id
+        where product_name like concat('%',#{name},'%')
+        <if test="score != null">
+            and score = #{score}
+        </if>
+    </select>
+
+    <insert id="insertQuality" parameterType="com.example.common.dto.Quality">
+        insert into qualities
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="score != null">score,</if>
+            <if test="quality_desc != null and quality_desc != ''">quality_desc,</if>
+            <if test="product_id != null">product_id,</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="score != null">#{score},</if>
+            <if test="quality_desc != null and quality_desc != ''">#{quality_desc},</if>
+            <if test="product_id != null">#{product_id},</if>
+        </trim>
+    </insert>
+
+</mapper>
