@@ -1,35 +1,41 @@
 #port
 server:
   port: 8763
-#spring
 spring:
+  #spring-app-name
   application:
     name: spring-cloud-consumer
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 #    time-zone: GMT+8
-#eureka
+#eureka-uri
 eureka:
   client:
     service-url:
       default-url: http://localhost:8761/eureka/
-#hystrix
+#feign
 feign:
+  #set-hystrix-enabled
   hystrix:
     enabled: true
+  #feign-client-timeout
   client:
     config:
       default:
-        connectTimeout: 10000
-        readTimeout: 10000
+        connectTimeout: 3000
+        readTimeout: 3000
+  #set-request-body-get
+  httpclient:
+    enabled: true
+#hystrix-timeout
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1000
-#ribbon
+            timeoutInMilliseconds: 3000
+#ribbon-type
 spring-cloud-server:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule

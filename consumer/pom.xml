@@ -30,9 +30,13 @@
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
         <dependency>
-        <groupId>io.github.openfeign</groupId>
-        <artifactId>feign-httpclient</artifactId>
-    </dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>
         <!--google工具类依赖开始-->
         <dependency>
             <groupId>com.google.guava</groupId>
