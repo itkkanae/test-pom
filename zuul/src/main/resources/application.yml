@@ -4,7 +4,7 @@ spring:
     name: spring-cloud-zuul
 #port
 server:
-  port: 8080
+  port: 8762
 #eureka
 eureka:
   client:
@@ -23,7 +23,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1000
+            timeoutInMilliseconds: 3000
 ribbon:
-  ReadTimeout: 1000
-  ConnectTimeout: 1000
+  ReadTimeout: 3000
+  ConnectTimeout: 3000

@@ -2,10 +2,11 @@ package com.example.consumer.controller;
 
 import com.example.consumer.feign.ProductsFeign;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
 
 @Api(tags = "产品Controller")
 @RestController
@@ -14,12 +15,10 @@ public class ProductsController {
 
     @Resource
     private ProductsFeign productsFeign;
+    @Resource
+    private KafkaTemplate<String, String> kafkaTemplate;
 
-    @ApiOperation("pdTest")
-    @GetMapping("/pdTest")
-    public String pdTest(String s){
-        return productsFeign.pdTest(s);
-    }
+
 
 
 }

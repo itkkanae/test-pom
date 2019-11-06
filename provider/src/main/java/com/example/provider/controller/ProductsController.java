@@ -12,9 +12,4 @@ public class ProductsController {
     @Resource
     private ProductsService productsService;
 
-    @GetMapping("/test")
-    String pdTest(@RequestParam("string") String string) {
-        return "ok";
-    }
-
 }

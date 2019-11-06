@@ -10,8 +10,4 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "spring-cloud-provider", fallback = ProductsHystrix.class)
 public interface ProductsFeign {
 
-    @GetMapping("/products/test")
-    String pdTest(@RequestParam("string") String string);
-
-
 }

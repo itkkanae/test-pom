@@ -7,9 +7,4 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductsHystrix implements ProductsFeign {
 
-
-    @Override
-    public String pdTest(String string) {
-        return "aaaaa";
-    }
 }
